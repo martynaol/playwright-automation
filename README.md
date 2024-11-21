@@ -24,10 +24,12 @@ This repository showcases my work in automation using the Playwright framework a
 
 Use scripts to run the tests:
 
-| Script   | Description                        | Command           |
-| -------- | ---------------------------------- | ----------------- |
-| test     | Run all tests                      | `npm run test`    |
-
+| Script   | Description                                                                                    | Command                           |
+| -------- | ---------------------------------------------------------------------------------------------- | --------------------------------- |
+| lint     | Runs ESLint to analyze all files in the project                                                | `eslint . --max-warnings=0`       |
+| lint:fix | Runs ESLint to automatically fix problems that it can resolve                                  | `eslint . --fix --max-warnings=0` |
+| format   | Runs Prettier, a code formatter, to standardize the code style across all files in the project | `prettier --write .`              |
+| test     | Runs all tests                                                                                 | `npm run test`                    |
 
 ## Project Structure
 
