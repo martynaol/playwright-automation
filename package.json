@@ -1,0 +1,15 @@
+{
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:martynaol/playwright-automation.git",
+  "author": "martyna.olesinska",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.9.1"
+  },
+  "scripts": {
+    "test": "npx playwright test"
+  }
+}
