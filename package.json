@@ -15,6 +15,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-playwright": "^2.1.0",
     "globals": "^15.12.0",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "prettier": "3.3.3",
     "typescript-eslint": "^8.15.0"
   },
@@ -22,6 +24,11 @@
     "lint": "eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",
     "format": "prettier --write .",
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
