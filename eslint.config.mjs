@@ -20,7 +20,7 @@ export default [
   },
   {
     ...playwright.configs['flat/recommended'],
-    files: ['tests/**', 'tests-examples/'],
+    files: ['tests/**', ],
     rules: {
       ...playwright.configs['flat/recommended'].rules,
     },
