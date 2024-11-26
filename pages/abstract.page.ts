@@ -12,17 +12,18 @@ export abstract class AbstractPage {
     this.baseURL = 'https://automationexercise.com';
   }
 
-  async goto(additionalPath: string = ''): Promise<void> {
-    await this.page.goto(this.baseURL + this.path + additionalPath);
+  async goto(additionalPath?: string): Promise<void> {
+    const addPath = additionalPath ? additionalPath : '';
+    await this.page.goto(this.baseURL + this.path + addPath);
   }
 
   async visit(path: string): Promise<void> {
     await this.page.goto(path);
   }
-  
+
   async shouldBeAtPage(message?: string) {
-    await expect(this.page, message).toHaveURL(new RegExp('/.*' + this.path), { timeout: 40000 })
+    await expect(this.page, message).toHaveURL(new RegExp('/.*' + this.path), {
+      timeout: 40000,
+    });
   }
-
-
 }

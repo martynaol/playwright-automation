@@ -12,7 +12,7 @@ import { TEST_TAG } from '../playwright.config';
 
 test.describe('Register', () => {
   test(
-    'Register a new user',
+    'should register a new user',
     { tag: TEST_TAG.regression },
     async ({ loginPage, signupPage, homePage }) => {
       const user: User = generateRandomEmailAddress();

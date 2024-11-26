@@ -7,6 +7,7 @@ export class LoginPage extends BasePage {
   readonly loginEmailInput: Locator;
   readonly loginPasswordInput: Locator;
   readonly loginSubmitButton: Locator;
+  readonly errorMessageText: Locator;
   readonly signupUsernameInput: Locator;
   readonly signupEmailInput: Locator;
   readonly signupSubmitButton: Locator;
@@ -16,6 +17,9 @@ export class LoginPage extends BasePage {
     this.loginEmailInput = this.page.getByTestId('login-email');
     this.loginPasswordInput = this.page.getByTestId('login-password');
     this.loginSubmitButton = this.page.getByTestId('login-button');
+    this.errorMessageText = this.page.getByText(
+      'Your email or password is incorrect!'
+    );
     this.signupUsernameInput = this.page.getByTestId('signup-name');
     this.signupEmailInput = this.page.getByTestId('signup-email');
     this.signupSubmitButton = this.page.getByTestId('signup-button');
