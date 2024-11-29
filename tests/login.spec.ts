@@ -6,20 +6,20 @@ test.describe('Login', () => {
   test(
     'should login with valid credentials',
     { tag: [TEST_TAG.regression, TEST_TAG.smoke] },
-    async ({ loginPage, user }) => {
+    async ({ loginPage, user, confirmCookies }) => {
+      await confirmCookies.goto();
       await loginPage.goto();
-      await loginPage.cookies.acceptCookies();
-      await loginPage.login(user.email, user.password);
+      await loginPage.login(user);
     }
   );
 
   test(
     'should not login user with invalid credentials',
     { tag: TEST_TAG.regression },
-    async ({ loginPage }) => {
+    async ({ loginPage, confirmCookies }) => {
+      await confirmCookies.goto();
       await loginPage.goto();
-      await loginPage.cookies.acceptCookies();
-      await loginPage.login('test01@zaq.co', 'test123');
+      await loginPage.login({ email: 'test01@zaq.co', password: 'test123' });
       await loginPage.shouldBeAtPage();
       await expect(loginPage.errorMessageText).toBeVisible();
     }

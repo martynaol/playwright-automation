@@ -2,6 +2,7 @@ import { Locator, Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { getPath } from '../config/routes';
 import { step } from '../utils/steps.utils';
+import { IUserCredentials } from '../interfaces/user.interface';
 
 export class LoginPage extends BasePage {
   readonly loginEmailInput: Locator;
@@ -14,9 +15,9 @@ export class LoginPage extends BasePage {
 
   constructor(page: Page) {
     super(page, getPath('login'));
-    this.loginEmailInput = this.page.getByTestId('login-email');
-    this.loginPasswordInput = this.page.getByTestId('login-password');
-    this.loginSubmitButton = this.page.getByTestId('login-button');
+    this.loginEmailInput = this.page.locator('[data-qa="login-email"]');
+    this.loginPasswordInput = this.page.locator('[data-qa="login-password"]');
+    this.loginSubmitButton = this.page.locator('[data-qa="login-button"]');
     this.errorMessageText = this.page.getByText(
       'Your email or password is incorrect!'
     );
@@ -40,9 +41,9 @@ export class LoginPage extends BasePage {
   }
 
   @step('Login with email {email} and password {password}')
-  async login(email: string, password: string): Promise<void> {
-    await this.fillLoginEmailInput(email);
-    await this.fillLoginPasswordInput(password);
+  async login(user: IUserCredentials): Promise<void> {
+    await this.fillLoginEmailInput(user.email);
+    await this.fillLoginPasswordInput(user.password);
     await this.clickLoginSubmitButton();
   }
 

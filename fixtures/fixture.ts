@@ -6,6 +6,7 @@ import { getUsers } from '../config/users';
 import { IUserCredentials } from '../interfaces/user.interface';
 
 type Fixture = {
+  confirmCookies: HomePage;
   homePage: HomePage;
   loginPage: LoginPage;
   signupPage: SignupPage;
@@ -13,6 +14,13 @@ type Fixture = {
 };
 
 export const test = base.extend<Fixture>({
+  confirmCookies: async ({ homePage }, use) => {
+    await homePage.goto();
+    if (await homePage.cookies.isCookiesValid()) {
+      await homePage.cookies.acceptCookies();
+    }
+    await use(homePage);
+  },
   homePage: async ({ page }, use) => {
     await use(new HomePage(page));
   },
