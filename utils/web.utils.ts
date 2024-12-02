@@ -2,12 +2,18 @@ import { Page } from '@playwright/test';
 import config from '../playwright.config';
 
 export async function waitForStableHtml(page: Page, timeout?: number) {
-  page.waitForLoadState();
-  const waitTimeout = timeout || config.use?.actionTimeout || 30000;
-  const timeoutPromise = page.waitForTimeout(waitTimeout).then(() => {
-    throw new Error('waitForStableHtml timeout after ' + waitTimeout + 'ms');
+  await page.waitForLoadState('domcontentloaded');
+  const waitTimeout = timeout || config.use?.actionTimeout || 3000;
+
+  const timeoutPromise = new Promise<void>((_, reject) => {
+    setTimeout(() => {
+      reject(
+        new Error('waitForStableHtml timeout after ' + waitTimeout + 'ms')
+      );
+    }, waitTimeout);
   });
-  const htmlPromise = new Promise<void>((resolve) => {
+
+  const htmlPromise = new Promise<void>(async (resolve) => {
     let lastHtml = '';
     const interval = setInterval(async () => {
       const html = await page.content();
@@ -16,7 +22,8 @@ export async function waitForStableHtml(page: Page, timeout?: number) {
         resolve();
       }
       lastHtml = html;
-    }, 100);
+    }, 100); // Reduced interval check time for more responsiveness
   });
+
   await Promise.race([timeoutPromise, htmlPromise]);
 }

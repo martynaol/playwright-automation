@@ -6,7 +6,6 @@ import path from 'path';
 import { IUserCredentials } from '../interfaces/user.interface';
 import { getUsers } from '../config/users';
 import fs from 'fs';
-import config from '../playwright.config';
 
 type Fixture = {
   homePage: HomePage;

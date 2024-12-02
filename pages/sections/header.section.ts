@@ -1,11 +1,12 @@
 import { Locator, Page } from '@playwright/test';
+import { step } from '../../utils/steps.utils';
 
 export class Header {
   readonly headerLinks: Locator;
   readonly loggedUser: Locator;
 
   constructor(private page: Page) {
-    this.headerLinks = this.page.locator('.nav navbar-nav');
+    this.headerLinks = this.page.locator('.nav.navbar-nav li').locator('a');
     this.loggedUser = this.page.getByText(' Logged in as ');
   }
 
@@ -22,5 +23,9 @@ export class Header {
 
     const username = match[1].trim();
     return username;
+  }
+
+  async getHeaderLinks(): Promise<Locator[]> {
+    return await this.headerLinks.all();
   }
 }

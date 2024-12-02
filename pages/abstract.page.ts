@@ -1,15 +1,17 @@
+import { pl } from '@faker-js/faker';
 import { expect } from '@playwright/test';
 import { Page } from 'playwright';
+import playwrightConfig from '../playwright.config';
 
 export abstract class AbstractPage {
   protected page: Page;
   protected path: string;
-  readonly baseURL: string;
+  readonly baseURL: any;
 
   constructor(page: Page, path: string) {
     this.page = page;
     this.path = path;
-    this.baseURL = 'https://automationexercise.com';
+    this.baseURL = playwrightConfig.use?.baseURL;
   }
 
   async goto(additionalPath?: string): Promise<void> {

@@ -4,8 +4,10 @@ import { SignupPage } from '../pages/signup.page';
 import { HomePage } from '../pages/homepage.page';
 import { getUsers } from '../config/users';
 import { IUserCredentials } from '../interfaces/user.interface';
+import playwrightConfig from '../playwright.config';
 
 type Fixture = {
+  baseURL: string;
   confirmCookies: HomePage;
   homePage: HomePage;
   loginPage: LoginPage;
@@ -14,6 +16,7 @@ type Fixture = {
 };
 
 export const test = base.extend<Fixture>({
+  baseURL: playwrightConfig.use?.baseURL,
   confirmCookies: async ({ homePage }, use) => {
     await homePage.goto();
     if (await homePage.cookies.isCookiesValid()) {

@@ -14,6 +14,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
+    baseURL: 'https://automationexercise.com',
     screenshot: 'only-on-failure',
     testIdAttribute: 'data-qa',
     trace: 'on-first-retry',
