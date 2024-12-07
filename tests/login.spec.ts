@@ -6,10 +6,12 @@ test.describe('Login', () => {
   test(
     'should login with valid credentials',
     { tag: [TEST_TAG.regression, TEST_TAG.smoke] },
-    async ({ loginPage, user, confirmCookies }) => {
+    async ({ loginPage, user, confirmCookies, homePage }) => {
       await confirmCookies.goto();
       await loginPage.goto();
       await loginPage.login(user);
+
+      expect(await homePage.header.getUsername()).toContain(user.email);
     }
   );
 

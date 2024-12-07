@@ -1,7 +1,11 @@
 const paths = {
+  accountCreated: '/account_created',
+  cart: '/view_cart',
+  checkout: '/checkout',
   login: '/login',
+  payment: '/payment',
+  products: '/products',
   signup: '/signup',
-  accountCreated: '/account_created'
 };
 
 export function getPath(path: string): string {

@@ -1,4 +1,3 @@
-import { pl } from '@faker-js/faker';
 import { expect } from '@playwright/test';
 import { Page } from 'playwright';
 import playwrightConfig from '../playwright.config';

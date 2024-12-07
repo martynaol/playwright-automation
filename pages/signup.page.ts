@@ -82,17 +82,17 @@ export class SignupPage extends BasePage {
   }
 
   @step('Fill address information')
-  async fillAddressInformation(data: IAddressInformation) {
-    if (data.companyName) await this.companyInput.fill(data.companyName);
+  async fillAddressInformation(data: IAddressInformation):Promise<void>  {
+    if (data.company) await this.companyInput.fill(data.company);
     await this.firstnameInput.fill(data.firstname);
     await this.lastnameInput.fill(data.lastname);
-    await this.address1Input.fill(data.address);
-    await this.address2Input.fill(data.address);
+    await this.address1Input.fill(data.address1);
+    if (data.address2) await this.address2Input.fill(data.address2);
     await this.cityInput.fill(data.city);
     await this.stateInput.fill(data.state);
-    await this.zipInput.fill(data.postalCode);
+    await this.zipInput.fill(data.zipcode);
     await this.countrySelector.selectOption({ value: data.country });
-    await this.mobilePhoneInput.fill(data.mobileNumber);
+    await this.mobilePhoneInput.fill(data.mobile_number);
   }
   @step('Click on create account button')
   async clickCreateAccountButton(): Promise<void> {

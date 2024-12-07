@@ -1,5 +1,4 @@
 import { Locator, Page } from '@playwright/test';
-import { step } from '../../utils/steps.utils';
 
 export class Header {
   readonly headerLinks: Locator;

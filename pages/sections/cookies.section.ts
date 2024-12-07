@@ -3,7 +3,7 @@ import { step } from '../../utils/steps.utils';
 
 export class CookiesSection {
   private readonly acceptButton: Locator;
- 
+
   constructor(private page: Page) {
     this.acceptButton = this.page
       .locator('.fc-footer-buttons')

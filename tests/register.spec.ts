@@ -5,8 +5,12 @@ import {
   generateRandomEmailAddress,
   generateAddressData,
   generatePassword,
+  getUserNameFromEmail,
 } from '../utils/helper';
-import { IAddressInformation, User } from '../interfaces/user.interface';
+import {
+  IAddressInformation,
+  IUserCredentials,
+} from '../interfaces/user.interface';
 import { Country } from '../enum/country.enum';
 import { TEST_TAG } from '../playwright.config';
 
@@ -15,7 +19,8 @@ test.describe('Register', () => {
     'should register a new user',
     { tag: TEST_TAG.regression },
     async ({ loginPage, signupPage, homePage }) => {
-      const user: User = generateRandomEmailAddress();
+      const email: string = generateRandomEmailAddress();
+      const username = getUserNameFromEmail(email);
       const password: string = generatePassword();
       const birthdate = generateBirthdayData() || {
         day: '01',
@@ -28,11 +33,11 @@ test.describe('Register', () => {
 
       await loginPage.goto();
       await loginPage.cookies.acceptCookies();
-      await loginPage.signup(user.username, user.email);
+      await loginPage.signup(username, email);
       await signupPage.shouldBeAtPage();
-      await expect(signupPage.usernameInput).toHaveValue(user.username);
+      await expect(signupPage.usernameInput).toHaveValue(username);
       await expect(signupPage.usernameInput).toBeEditable();
-      await expect(signupPage.emailInput).toHaveValue(user.email);
+      await expect(signupPage.emailInput).toHaveValue(email);
       await expect(signupPage.emailInput).not.toBeEditable();
 
       await signupPage.fillPasswordInput(password);
@@ -49,7 +54,7 @@ test.describe('Register', () => {
         state: 'visible',
       });
       await signupPage.accountCreatedSection.clickContinue();
-      expect(await homePage.header.getUsername()).toContain(user.username);
+      expect(await homePage.header.getUsername()).toContain(username);
     }
   );
 });

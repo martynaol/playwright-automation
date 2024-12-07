@@ -27,3 +27,4 @@ export async function waitForStableHtml(page: Page, timeout?: number) {
 
   await Promise.race([timeoutPromise, htmlPromise]);
 }
+
