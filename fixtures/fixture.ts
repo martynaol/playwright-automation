@@ -3,7 +3,7 @@ import { test as base } from '@playwright/test';
 import { SignupPage } from '../pages/signup.page';
 import { HomePage } from '../pages/homepage.page';
 import { getUsers } from '../config/users';
-import { IUserCredentials } from '../interfaces/user.interface';
+import { type IUserCredentials } from '../interfaces/user.interface';
 import playwrightConfig from '../playwright.config';
 import { UserServiceApi } from '../api/user.service.api';
 import { ProductsPage } from '../pages/products.page';

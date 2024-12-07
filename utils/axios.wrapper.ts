@@ -1,4 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosResponse,
+} from 'axios';
 
 interface RequestOptions extends AxiosRequestConfig {}
 interface ApiResponse<T = any> extends AxiosResponse<T> {}
@@ -36,11 +40,7 @@ export default class ApiClient implements IApiClient {
     return response.data as TResponse;
   }
 
-  async post<TRequest, TResponse>(
-    path,
-    payload,
-    isFormData = true
-  ): Promise<TResponse> {
+  async post<TResponse>(path, payload, isFormData = true): Promise<TResponse> {
     let data: any = payload;
 
     if (isFormData) {

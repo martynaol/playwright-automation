@@ -1,7 +1,6 @@
-import { Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { ProductsPage } from './products.page';
-import { Search } from './sections/search.section';
 
 export class HomePage extends BasePage {
   readonly productsList: ProductsPage;

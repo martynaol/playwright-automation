@@ -1,4 +1,4 @@
-import { Country } from '../enum/country.enum';
+import { type Country } from '../enum/country.enum';
 
 export interface IUserCredentials {
   email: string;

@@ -7,10 +7,7 @@ import {
   generatePassword,
   getUserNameFromEmail,
 } from '../utils/helper';
-import {
-  IAddressInformation,
-  IUserCredentials,
-} from '../interfaces/user.interface';
+import { type IAddressInformation } from '../interfaces/user.interface';
 import { Country } from '../enum/country.enum';
 import { TEST_TAG } from '../playwright.config';
 
@@ -18,7 +15,7 @@ test.describe('Register', () => {
   test(
     'should register a new user',
     { tag: TEST_TAG.regression },
-    async ({ loginPage, signupPage, homePage }) => {
+    async ({ loginPage, signupPage, homePage, confirmCookies }) => {
       const email: string = generateRandomEmailAddress();
       const username = getUserNameFromEmail(email);
       const password: string = generatePassword();
@@ -30,9 +27,8 @@ test.describe('Register', () => {
       const address: IAddressInformation = generateAddressData(
         Country.NewZealand
       );
-
+      await confirmCookies.goto();
       await loginPage.goto();
-      await loginPage.cookies.acceptCookies();
       await loginPage.signup(username, email);
       await signupPage.shouldBeAtPage();
       await expect(signupPage.usernameInput).toHaveValue(username);

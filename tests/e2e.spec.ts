@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 
 import { Country } from '../enum/country.enum';
 import { test } from '../fixtures/fixture';
-import { ICreateAccount, IUserCredentials } from '../interfaces/user.interface';
+import { type ICreateAccount, type IUserCredentials } from '../interfaces/user.interface';
 import { TEST_TAG } from '../playwright.config';
 import { generateUserData, generateUserPayload } from '../utils/helper';
 import { waitForStableHtml } from '../utils/web.utils';
@@ -95,7 +95,7 @@ test.describe('E2E test', () => {
         paymentPage.successMessage,
         'Payment finished with success'
       ).toBeVisible();
-      expect(
+      await expect(
         paymentPage.downloadInvoiceButton,
         'Purchase completed'
       ).toBeVisible();

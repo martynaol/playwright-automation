@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import config from '../playwright.config';
 
 export async function waitForStableHtml(page: Page, timeout?: number) {
@@ -27,4 +27,3 @@ export async function waitForStableHtml(page: Page, timeout?: number) {
 
   await Promise.race([timeoutPromise, htmlPromise]);
 }
-

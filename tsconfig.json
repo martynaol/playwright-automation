@@ -1,0 +1,25 @@
+{
+  "typeAcquisition": {
+    "enable": true
+  },
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./*", "./*.d.ts"],
+      "specs/*": ["specs/*"]
+    },
+    "target": "ES2019",
+    "module": "commonjs",
+    "pretty": true,
+    "noImplicitThis": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "include": ["utils", "**/*.ts", "**/*.json"],
+  "exclude": ["./node_modules", "./test-result", "/playwright-report", "./auth"]
+}

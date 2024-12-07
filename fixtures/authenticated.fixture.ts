@@ -3,7 +3,7 @@ import { HomePage } from '../pages/homepage.page';
 import { LoginPage } from '../pages/login.page';
 import { SignupPage } from '../pages/signup.page';
 import path from 'path';
-import { IUserCredentials } from '../interfaces/user.interface';
+import { type IUserCredentials } from '../interfaces/user.interface';
 import { getUsers } from '../config/users';
 import fs from 'fs';
 
@@ -11,6 +11,7 @@ type Fixture = {
   homePage: HomePage;
   loginPage: LoginPage;
   signupPage: SignupPage;
+  user: IUserCredentials
 };
 let workerUser: IUserCredentials;
 
@@ -68,5 +69,8 @@ export const authTest = base.extend<Fixture, { workerStorageState: string }>({
   },
   signupPage: async ({ page }, use) => {
     await use(new SignupPage(page));
+  },
+  user: async ({}, use) => {
+    await use(workerUser)
   },
 });

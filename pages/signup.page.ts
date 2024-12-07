@@ -1,7 +1,7 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { getPath } from '../config/routes';
-import { IAddressInformation } from '../interfaces/user.interface';
+import { type IAddressInformation } from '../interfaces/user.interface';
 import { AccountCreatedSection } from './sections/account.created.section';
 import { step } from '../utils/steps.utils';
 

@@ -1,4 +1,4 @@
-import { ICreateAccount, IUserCredentials } from '../interfaces/user.interface';
+import { type ICreateAccount, type IUserCredentials } from '../interfaces/user.interface';
 import playwrightConfig from '../playwright.config';
 import ApiClient from '../utils/axios.wrapper';
 import { step } from '../utils/steps.utils';

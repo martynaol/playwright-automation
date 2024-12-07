@@ -19,7 +19,7 @@ test.describe('Header navigation as a guest', () => {
 
         await test.step(`Navigating to ${href}`, async () => {
           await link.click();
-          await waitForStableHtml(page, 60000);
+          await waitForStableHtml(page);
 
           if (href) {
             const isExternal = href.startsWith('http');

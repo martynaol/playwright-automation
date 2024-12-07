@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker';
 import {
-  IAddressInformation,
-  IUserCredentials,
+  type IAddressInformation,
+  type IUserCredentials,
 } from '../interfaces/user.interface';
-import { Country } from '../enum/country.enum';
+import { type Country } from '../enum/country.enum';
 
 type EmailFormat = {
   inboxPrefix?: string;

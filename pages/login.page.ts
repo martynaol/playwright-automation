@@ -1,8 +1,8 @@
-import { Locator, Page } from '@playwright/test';
+import { type Locator, type Page } from '@playwright/test';
 import { BasePage } from './base.page';
 import { getPath } from '../config/routes';
 import { step } from '../utils/steps.utils';
-import { IUserCredentials } from '../interfaces/user.interface';
+import { type IUserCredentials } from '../interfaces/user.interface';
 
 export class LoginPage extends BasePage {
   readonly loginEmailInput: Locator;

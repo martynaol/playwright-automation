@@ -15,12 +15,12 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    actionTimeout: 5 * 60 * 1000,
-    navigationTimeout: 5 * 60 * 1000,
     baseURL: 'https://automationexercise.com',
     screenshot: 'only-on-failure',
     testIdAttribute: 'data-qa',
     trace: 'on',
+    navigationTimeout: 60_000,
+    actionTimeout: 60_000,
   },
   projects: [
     {

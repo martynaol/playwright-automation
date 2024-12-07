@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { Page } from 'playwright';
+import { type Page } from 'playwright';
 import playwrightConfig from '../playwright.config';
 
 export abstract class AbstractPage {

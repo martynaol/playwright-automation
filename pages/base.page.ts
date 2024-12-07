@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { type Page } from '@playwright/test';
 import { AbstractPage } from './abstract.page';
 import { CookiesSection } from './sections/cookies.section';
 import { Header } from './sections/header.section';

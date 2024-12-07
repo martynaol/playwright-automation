@@ -18,10 +18,7 @@ function serialize(...args: any[]): string {
 }
 
 export function step(stepName?: string) {
-  return function decorator(
-    target: Function,
-    context: ClassMethodDecoratorContext
-  ) {
+  return function decorator(target: Function) {
     return function replacementMethod(...args: any) {
       const argsListSerialized = serialize(...args);
       const argsList = argsListSerialized.length
