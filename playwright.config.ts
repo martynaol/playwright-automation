@@ -4,7 +4,6 @@ export const TEST_TAG = {
   e2e: '@e2e',
   smoke: '@smoke',
   regression: '@regression',
-  visual: '@visual',
 };
 
 export default defineConfig({

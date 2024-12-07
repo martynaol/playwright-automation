@@ -31,7 +31,6 @@
     "test:e2e": "npx playwright test --grep @e2e",
     "test:smoke": "npx playwright test --grep @smoke",
     "test:regression": "npx playwright test --grep @regression",
-    "visual": "npx playwright test --grep @visual",
     "prepare": "husky install"
   },
   "lint-staged": {
