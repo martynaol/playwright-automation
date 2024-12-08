@@ -3,6 +3,7 @@ const paths = {
   cart: '/view_cart',
   checkout: '/checkout',
   login: '/login',
+  logout: '/logout',
   payment: '/payment',
   products: '/products',
   signup: '/signup',

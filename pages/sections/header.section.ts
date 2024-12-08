@@ -1,12 +1,15 @@
 import { type Locator, type Page } from '@playwright/test';
+import { step } from 'utils/steps.utils';
 
 export class Header {
   readonly headerLinks: Locator;
   readonly loggedUser: Locator;
+  readonly logoutButton: Locator;
 
   constructor(private page: Page) {
     this.headerLinks = this.page.locator('.nav.navbar-nav li').locator('a');
     this.loggedUser = this.page.getByText(' Logged in as ');
+    this.logoutButton = this.page.locator('a[href="/logout"]');
   }
 
   async getUsername(): Promise<string> {
@@ -26,5 +29,10 @@ export class Header {
 
   async getHeaderLinks(): Promise<Locator[]> {
     return await this.headerLinks.all();
+  }
+
+  @step('Click logout button')
+  async clickLogout(): Promise<void> {
+    await this.logoutButton.click();
   }
 }
