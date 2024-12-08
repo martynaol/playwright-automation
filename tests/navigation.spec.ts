@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import { test } from '../fixtures/fixture';
 import { TEST_TAG } from '../playwright.config';
 import { waitForStableHtml } from '../utils/web.utils';
+import { time } from 'console';
 
 test.describe('Header navigation as a guest', () => {
   test.beforeEach(async ({ confirmCookies }) => {
@@ -9,7 +10,7 @@ test.describe('Header navigation as a guest', () => {
   });
 
   test(
-    'should navigate to all pages',
+    'should navigate to all pages in the header',
     { tag: [TEST_TAG.smoke, TEST_TAG.regression] },
     async ({ page, baseURL, homePage }) => {
       const links = await homePage.header.getHeaderLinks();
@@ -26,6 +27,7 @@ test.describe('Header navigation as a guest', () => {
 
             if (isExternal) {
               expect(page.url()).toBe(href);
+              await homePage.goto();
             } else {
               await expect(page).toHaveURL(`${baseURL}${href}`);
             }
@@ -33,9 +35,6 @@ test.describe('Header navigation as a guest', () => {
             throw new Error('href is not defined');
           }
         });
-
-        // Navigate back to the home page before the next iteration
-        await homePage.goto();
       }
     }
   );

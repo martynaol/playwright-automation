@@ -14,9 +14,10 @@ test.describe('Login', () => {
     { tag: [TEST_TAG.regression, TEST_TAG.smoke] },
     async ({ loginPage, user, homePage }) => {
       await loginPage.login(user);
-      expect(await homePage.header.getUsername()).toContain(
-        getUserNameFromEmail(user.email)
-      );
+      expect(
+        await homePage.header.getUsername(),
+        'Username should be displayed in the header after login'
+      ).toContain(getUserNameFromEmail(user.email));
     }
   );
 
@@ -26,7 +27,10 @@ test.describe('Login', () => {
     async ({ loginPage }) => {
       await loginPage.login({ email: 'test01@zaq.co', password: 'test123' });
       await loginPage.shouldBeAtPage();
-      await expect(loginPage.errorMessageText).toBeVisible();
+      await expect(
+        loginPage.errorMessageText,
+        'Error message should displayed'
+      ).toBeVisible();
     }
   );
 });

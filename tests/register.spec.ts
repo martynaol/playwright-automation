@@ -31,10 +31,21 @@ test.describe('Register', () => {
       await loginPage.goto();
       await loginPage.signup(username, email);
       await signupPage.shouldBeAtPage();
-      await expect(signupPage.usernameInput).toHaveValue(username);
-      await expect(signupPage.usernameInput).toBeEditable();
-      await expect(signupPage.emailInput).toHaveValue(email);
-      await expect(signupPage.emailInput).not.toBeEditable();
+      await expect(
+        signupPage.usernameInput,
+        'Username should be filled'
+      ).toHaveValue(username);
+      await expect(
+        signupPage.usernameInput,
+        'Username field should be editable'
+      ).toBeEditable();
+      await expect(signupPage.emailInput, 'Email should be filled').toHaveValue(
+        email
+      );
+      await expect(
+        signupPage.emailInput,
+        'Email field should not be editable'
+      ).not.toBeEditable();
 
       await signupPage.fillPasswordInput(password);
       await signupPage.selectBirthdateDate(
@@ -50,7 +61,10 @@ test.describe('Register', () => {
         state: 'visible',
       });
       await signupPage.accountCreatedSection.clickContinue();
-      expect(await homePage.header.getUsername()).toContain(username);
+      expect(
+        await homePage.header.getUsername(),
+        'Username should be displayed in the header after login'
+      ).toContain(username);
     }
   );
 });
